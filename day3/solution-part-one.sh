@@ -31,7 +31,7 @@ check_dulicate_items () {
             local char_two=${COMPARTMENT_TWO:$j:1}
 
             if [ "$char_one" == "$char_two" ]; then
-                sum_of_items "$char_one" "$char_two"
+                sum_of_items "$char_one"
                 break 2
             fi
         done
@@ -47,5 +47,3 @@ read_file () {
 
 read_file
 echo "Sum of priorities $sum_of_priorities"
-
-# day3 part two

@@ -5,7 +5,7 @@ import (
 )
 
 type Expedition struct {
-	Elfs                   []Elf
+	Elves                  []Elf
 	MostPackedElf          Elf
 	CaloriesOfTopThreeElfs int
 }
@@ -18,7 +18,7 @@ type Elf struct {
 
 func (e *Expedition) GetMostPackedElf() {
 	var maxCalories int
-	for _, elf := range e.Elfs {
+	for _, elf := range e.Elves {
 		if elf.TotalCalories > maxCalories {
 			maxCalories = elf.TotalCalories
 			e.SetMostPackedElf(elf)
@@ -31,15 +31,15 @@ func (e *Expedition) SetMostPackedElf(elf Elf) {
 }
 
 func (e *Expedition) SortElfsByTotalCalories() {
-	sort.Slice(e.Elfs, func(i, j int) bool {
-		return e.Elfs[i].TotalCalories > e.Elfs[j].TotalCalories
+	sort.Slice(e.Elves, func(i, j int) bool {
+		return e.Elves[i].TotalCalories > e.Elves[j].TotalCalories
 	})
 }
 
 func (e *Expedition) GetCaloriesOfTopThreeElfs() {
 	var total int
 	for i := 0; i < 3; i++ {
-		total = total + e.Elfs[i].TotalCalories
+		total = total + e.Elves[i].TotalCalories
 	}
 	e.CaloriesOfTopThreeElfs = total
 }

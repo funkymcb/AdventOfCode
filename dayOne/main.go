@@ -29,7 +29,7 @@ func sumOfTotalCalories(m []int) int {
 func appendElf(id int, meals []int) {
 	totalCalories := sumOfTotalCalories(meals)
 
-	exp.Elfs = append(exp.Elfs, expedition.Elf{
+	exp.Elves = append(exp.Elves, expedition.Elf{
 		ID:            id,
 		Meals:         meals,
 		TotalCalories: totalCalories,
@@ -57,7 +57,7 @@ func scanInput(input string) {
 }
 
 func printExpedition() {
-	for _, elf := range exp.Elfs {
+	for _, elf := range exp.Elves {
 		fmt.Printf("Elf #%d:\nMeals:%v\nTotal Calories:%d\n\n", elf.ID, elf.Meals, elf.TotalCalories)
 	}
 	fmt.Printf("Most packed Elf: Elf #%d with %d Calories\n\n", exp.MostPackedElf.ID, exp.MostPackedElf.TotalCalories)

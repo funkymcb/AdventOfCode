@@ -13,14 +13,14 @@ sum_of_items () {
     char_value=$(printf "%d" "'$1")
 
     if [[ "$1" =~ [a-z] ]]; then
-        priority=$(( $char_value - 96 ))
+        priority=$(( char_value - 96 ))
         echo "$1 is duplicate. Priority: $priority"
     elif [[ "$1" =~ [A-Z] ]]; then
-        priority=$(( $char_value - 38 ))
+        priority=$(( char_value - 38 ))
         echo "$1 is duplicate. Priority: $priority"
     fi
 
-    sum_of_priorities=$(( sum_of_priorities + $priority ))
+    sum_of_priorities=$(( sum_of_priorities + priority ))
 }
 
 check_dulicate_items () {
@@ -31,7 +31,7 @@ check_dulicate_items () {
             local char_two=${COMPARTMENT_TWO:$j:1}
 
             if [ "$char_one" == "$char_two" ]; then
-                sum_of_items $char_one $char_two
+                sum_of_items "$char_one" "$char_two"
                 break 2
             fi
         done
@@ -47,3 +47,5 @@ read_file () {
 
 read_file
 echo "Sum of priorities $sum_of_priorities"
+
+# day3 part two

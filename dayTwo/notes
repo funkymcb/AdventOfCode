@@ -1,0 +1,12 @@
+A: Rock         1
+B: Paper        2
+C: Scissors     3
+
+Response:
+X: Rock
+Y: Paper
+Z: Scissors
+
+lost: 0
+draw: 3
+win:  6

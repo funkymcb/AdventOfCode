@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/funkymcb/AdventOfCode/dayOne/pkg/expedition"
+	"github.com/funkymcb/AdventOfCode/day1/pkg/expedition"
 )
 
 var tmpElf expedition.Elf

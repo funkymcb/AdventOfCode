@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"os"
 
-	"github.com/funkymcb/AdventOfCode/dayTwo/pkg/game"
+	"github.com/funkymcb/AdventOfCode/day2/pkg/game"
 )
 
 func checkError(e error) {

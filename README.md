@@ -1,9 +1,9 @@
 # AdventOfCode
 My solutions to the Advent of Code 2022
 
-- [x] Day 1
-- [x] Day 2
-- [ ] Day 3
+- [x] Day 1     (go)
+- [x] Day 2     (go)
+- [x] Day 3     (bash)
 - [ ] Day 4
 - [ ] Day 5
 - [ ] Day 6

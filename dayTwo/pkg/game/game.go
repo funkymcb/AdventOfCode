@@ -48,11 +48,76 @@ func decipherStrategy(cipher, call string) int {
 	return result
 }
 
+// day 2 part 1
 func New(str string) Game {
 	calls := strings.Split(str, " ")
 
 	op := decipherStrategy("ABC", calls[0])
 	resp := decipherStrategy("XYZ", calls[1])
+
+	return Game{
+		Opponent: op,
+		Response: resp,
+	}
+}
+
+// day 2 part 2
+func figureOutShape(str []string) int {
+	var shape = 0
+
+	switch str[1] {
+	case "X":
+		// lose
+		switch str[0] {
+		case "A":
+			shape = Scissor
+			break
+		case "B":
+			shape = Rock
+			break
+		case "C":
+			shape = Paper
+			break
+		}
+		break
+	case "Y":
+		// draw
+		switch str[0] {
+		case "A":
+			shape = Rock
+			break
+		case "B":
+			shape = Paper
+			break
+		case "C":
+			shape = Scissor
+			break
+		}
+		break
+	case "Z":
+		// win
+		switch str[0] {
+		case "A":
+			shape = Paper
+			break
+		case "B":
+			shape = Scissor
+			break
+		case "C":
+			shape = Rock
+			break
+		}
+		break
+	}
+
+	return shape
+}
+
+func NewCorrect(str string) Game {
+	calls := strings.Split(str, " ")
+
+	op := decipherStrategy("ABC", calls[0])
+	resp := figureOutShape(calls)
 
 	return Game{
 		Opponent: op,

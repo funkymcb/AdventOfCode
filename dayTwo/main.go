@@ -23,7 +23,8 @@ func readGames(f *os.File) *game.Tournament {
 	scanner := bufio.NewScanner(f)
 
 	for scanner.Scan() {
-		g := game.New(scanner.Text())
+		// g := game.New(scanner.Text()) // day 2 part 1
+		g := game.NewCorrect(scanner.Text()) // day 2 part 2
 		g.Play()
 		t.Games = append(t.Games, g)
 	}

@@ -60,7 +60,9 @@ func printExpedition() {
 	for _, elf := range exp.Elfs {
 		fmt.Printf("Elf #%d:\nMeals:%v\nTotal Calories:%d\n\n", elf.ID, elf.Meals, elf.TotalCalories)
 	}
-	fmt.Printf("Most packed Elf: Elf #%d with %d Calories", exp.MostPackedElf.ID, exp.MostPackedElf.TotalCalories)
+	fmt.Printf("Most packed Elf: Elf #%d with %d Calories\n\n", exp.MostPackedElf.ID, exp.MostPackedElf.TotalCalories)
+
+	fmt.Printf("Calories of top three Elfs: %d\n", exp.CaloriesOfTopThreeElfs)
 }
 
 func main() {
@@ -70,5 +72,7 @@ func main() {
 	scanInput(string(input))
 
 	exp.GetMostPackedElf()
+	exp.SortElfsByTotalCalories()
+	exp.GetCaloriesOfTopThreeElfs()
 	printExpedition()
 }

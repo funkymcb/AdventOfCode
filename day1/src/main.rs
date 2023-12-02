@@ -1,6 +1,7 @@
 use phf::phf_map;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::process::exit;
 
 const INPUT_PATH: &str = "input";
 
@@ -37,7 +38,8 @@ fn main() {
             sum_two += calibration_value_two;
 
         } else {
-            println!("could not read line")
+            println!("could not read line");
+            exit(1)
         }
     }
 

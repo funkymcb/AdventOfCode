@@ -12,7 +12,7 @@ fn main() {
         .expect("could not read file");
     let reader = BufReader::new(file);
 
-    let mut game = Game::new();
+    let mut game = Game::default();
     let mut sum_of_ids: u16 = 0;
     let mut product_of_cubes: u32 = 0;
 

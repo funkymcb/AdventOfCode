@@ -10,7 +10,7 @@ const RED_CUBE_MAX: u8 = 12;
 const GREEN_CUBE_MAX: u8 = 13;
 const BLUE_CUBE_MAX: u8 = 14;
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Game {
     pub id: u8,
     pub red_cube_max: u8,
@@ -20,16 +20,6 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new() -> Game {
-        Game {
-            id: 0,
-            red_cube_max: 0,
-            green_cube_max: 0,
-            blue_cube_max: 0,
-            valid: false
-        }
-    }
-
     pub fn get_max_cube_counts(&mut self, line: &str) {
         let id: u8 = capture_regex(line, GAME_ID_REGEX);
         let red_max: u8 = capture_regex(line, RED_CUBE_REGEX);

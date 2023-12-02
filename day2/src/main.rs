@@ -12,17 +12,27 @@ fn main() {
         .expect("could not read file");
     let reader = BufReader::new(file);
 
+    let mut game = Game::new();
+    let mut sum_of_ids: u16 = 0;
+
     for line in reader.lines() {
         if line.is_ok() {
             let line: String = line.unwrap();
 
             // star1
-            let mut game = Game::new();
-            game.analyze(line.as_str());
+            game.get_max_cube_counts(line.as_str());
+            game.check_validity();
+
+            if game.valid {
+                sum_of_ids += game.id as u16
+            }
+
             println!("{}", &game);
         } else {
             println!("could not read line");
             exit(1)
         }
     }
+
+    println!("{}", sum_of_ids)
 }

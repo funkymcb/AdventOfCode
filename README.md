@@ -2,7 +2,7 @@
 My solutions to the Advent of Code 2023
 
 - [x] Day 1     (rust)
-- [ ] Day 2
+- [x] Day 2     (rust)
 - [ ] Day 3
 - [ ] Day 4
 - [ ] Day 5

@@ -14,12 +14,13 @@ fn main() {
 
     let mut game = Game::new();
     let mut sum_of_ids: u16 = 0;
+    let mut product_of_cubes: u32 = 0;
 
     for line in reader.lines() {
         if line.is_ok() {
             let line: String = line.unwrap();
 
-            // star1
+            // star 1
             game.get_max_cube_counts(line.as_str());
             game.check_validity();
 
@@ -27,12 +28,16 @@ fn main() {
                 sum_of_ids += game.id as u16
             }
 
-            println!("{}", &game);
+            // star 2
+            product_of_cubes += game.red_cube_max as u32 * 
+                game.green_cube_max as u32 *
+                game.blue_cube_max as u32;
         } else {
             println!("could not read line");
             exit(1)
         }
     }
 
-    println!("{}", sum_of_ids)
+    println!("sum of IDs: {}", sum_of_ids);
+    println!("product of max cubes: {}", product_of_cubes)
 }

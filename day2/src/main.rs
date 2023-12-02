@@ -29,9 +29,7 @@ fn main() {
             }
 
             // star 2
-            product_of_cubes += game.red_cube_max as u32 * 
-                game.green_cube_max as u32 *
-                game.blue_cube_max as u32;
+            product_of_cubes += game.red_cube_max as u32 * game.green_cube_max as u32 * game.blue_cube_max as u32;
         } else {
             println!("could not read line");
             exit(1)

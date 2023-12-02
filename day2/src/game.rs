@@ -43,9 +43,7 @@ impl Game {
     }
 
     pub fn check_validity(&mut self) {
-        if self.red_cube_max > RED_CUBE_MAX 
-            || self.green_cube_max > GREEN_CUBE_MAX
-            || self.blue_cube_max > BLUE_CUBE_MAX {
+        if self.red_cube_max > RED_CUBE_MAX || self.green_cube_max > GREEN_CUBE_MAX || self.blue_cube_max > BLUE_CUBE_MAX {
             self.valid = false
         } else {
                     self.valid = true

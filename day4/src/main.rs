@@ -34,7 +34,8 @@ fn main() {
     // star 2
     let mut i: usize = 0;
     loop {
-        println!("i: {}, game: {}", i, games[i]);
+        println!("i: {}, game: {}", i, games[i]); // TODO somehow i increments but games[i] is
+                                                  // always games[0]
         if games[i].id < 203 {
             if games[i].score > 0 {
                 for j in i..(usize::try_from(games[i].count_of_wins).unwrap() + i) {

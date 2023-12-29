@@ -38,15 +38,15 @@ fn main() {
                                                   // always games[0]
         if games[i].id < 203 {
             if games[i].score > 0 {
-                for j in i..(usize::try_from(games[i].count_of_wins).unwrap() + i) {
+                for j in i..(usize::from(games[i].count_of_wins) + i) {
                     println!("j: {}", j);
-                    games.insert(i+1, games[j].clone())
+                    games.insert(i + 1, games[j].clone())
                 }
             }
         } else {
-            break
+            break;
         }
-        i = i + 1
+        i += 1
     }
 
     println!("total scratchcards: {}", games.len())

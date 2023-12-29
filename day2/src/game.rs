@@ -16,7 +16,7 @@ pub struct Game {
     pub red_cube_max: u8,
     pub green_cube_max: u8,
     pub blue_cube_max: u8,
-    pub valid: bool
+    pub valid: bool,
 }
 
 impl Game {
@@ -33,23 +33,19 @@ impl Game {
     }
 
     pub fn check_validity(&mut self) {
-        if self.red_cube_max > RED_CUBE_MAX || self.green_cube_max > GREEN_CUBE_MAX || self.blue_cube_max > BLUE_CUBE_MAX {
-            self.valid = false
-        } else {
-                    self.valid = true
-        }
+        self.valid = !(self.red_cube_max > RED_CUBE_MAX
+            || self.green_cube_max > GREEN_CUBE_MAX
+            || self.blue_cube_max > BLUE_CUBE_MAX);
     }
 }
 
 impl fmt::Display for Game {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "game id: {}\n red cubes: {}\n green cubes: {}\n blue cubes: {}\n valid game: {}",
-               self.id,
-               self.red_cube_max,
-               self.green_cube_max,
-               self.blue_cube_max,
-               self.valid
-              )
+        write!(
+            f,
+            "game id: {}\n red cubes: {}\n green cubes: {}\n blue cubes: {}\n valid game: {}",
+            self.id, self.red_cube_max, self.green_cube_max, self.blue_cube_max, self.valid
+        )
     }
 }
 

@@ -3,6 +3,8 @@
 My solutions to the Advent of Code 2024
 
 - [x] Day 1     (go)
+  - [x] calculate distances between location IDs
+  - [x] calculate similarity score of location IDs
 - [ ] Day 2
 - [ ] Day 3
 - [ ] Day 4

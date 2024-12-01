@@ -1,8 +1,9 @@
 # AdventOfCode
-My solutions to the Advent of Code 2023
 
-- [x] Day 1     (rust)
-- [x] Day 2     (rust)
+My solutions to the Advent of Code 2024
+
+- [ ] Day 1
+- [ ] Day 2
 - [ ] Day 3
 - [ ] Day 4
 - [ ] Day 5

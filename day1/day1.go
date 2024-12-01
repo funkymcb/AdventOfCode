@@ -46,7 +46,7 @@ func readInput() ([]int, []int) {
 	return locationIDleft, locationIDright
 }
 
-// day 1 task 1
+// day 1 star 1
 func calculateTotalDistances(IDsLeft, IDsRight []int) (int, error) {
 	var result int
 
@@ -66,11 +66,39 @@ func calculateTotalDistances(IDsLeft, IDsRight []int) (int, error) {
 	return result, nil
 }
 
+// day 1 star 2
+func calculateSimilarityScore(IDsLeft, IDsRight []int) (int, error) {
+	var result int
+
+	for _, il := range IDsLeft {
+		var factor int
+
+		for _, ir := range IDsRight {
+			if il == ir {
+				factor++
+			}
+		}
+
+		result += (il * factor)
+	}
+
+	return result, nil
+}
+
 func main() {
 	locationIDsleft, locationIDright := readInput()
-	result, err := calculateTotalDistances(locationIDsleft, locationIDright)
+
+	star1, err := calculateTotalDistances(locationIDsleft, locationIDright)
 	if err != nil {
 		log.Fatalln("error calculating distance of IDs")
 	}
-	fmt.Println("Result: ", result)
+
+	fmt.Println("Result star 1: ", star1)
+
+	star2, err := calculateSimilarityScore(locationIDsleft, locationIDright)
+	if err != nil {
+		log.Fatalln("error calculating similarity score")
+	}
+
+	fmt.Println("Result star 2: ", star2)
 }

@@ -2,7 +2,7 @@
 
 My solutions to the Advent of Code 2024
 
-- [ ] Day 1
+- [x] Day 1     (go)
 - [ ] Day 2
 - [ ] Day 3
 - [ ] Day 4

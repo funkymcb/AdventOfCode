@@ -1,4 +1,4 @@
-package main
+package day1
 
 import (
 	"bufio"
@@ -11,7 +11,7 @@ import (
 )
 
 func readInput() ([]int, []int) {
-	file, err := os.Open("./input")
+	file, err := os.Open("./inputs/day_1.txt")
 	if err != nil {
 		log.Fatalln("error opening file", err)
 	}
@@ -85,7 +85,7 @@ func calculateSimilarityScore(IDsLeft, IDsRight []int) (int, error) {
 	return result, nil
 }
 
-func main() {
+func Run() {
 	locationIDsleft, locationIDright := readInput()
 
 	star1, err := calculateTotalDistances(locationIDsleft, locationIDright)
@@ -93,12 +93,12 @@ func main() {
 		log.Fatalln("error calculating distance of IDs")
 	}
 
-	fmt.Println("Result star 1: ", star1)
+	fmt.Println("Result day 1 star 1: ", star1)
 
 	star2, err := calculateSimilarityScore(locationIDsleft, locationIDright)
 	if err != nil {
 		log.Fatalln("error calculating similarity score")
 	}
 
-	fmt.Println("Result star 2: ", star2)
+	fmt.Println("Result day 1 star 2: ", star2)
 }

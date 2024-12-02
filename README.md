@@ -28,3 +28,17 @@ My solutions to the Advent of Code 2024
 - [ ] Day 22
 - [ ] Day 23
 - [ ] Day 24
+
+## usage
+
+make sure to export the session cookie:
+
+```bash
+export AOC_SESSION=<session cookie>
+```
+
+and run by using the day flag:
+
+```bash
+go run main.go -day x
+```

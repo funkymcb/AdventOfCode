@@ -2,8 +2,8 @@ package day2
 
 import (
 	"fmt"
-	"os"
 	"reflect"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -41,54 +41,96 @@ func handleInput() ([][]int, error) {
 	return reports, nil
 }
 
-func analyzeReports(reports [][]int) (int, error) {
-	var result int
+func reportIsSafe(report []int) bool {
+	var gaps []int
+	for i, level := range report {
+		if i == 0 {
+			//first level can be skipped
+			continue
+		}
 
-Reports:
+		gaps = append(gaps, (level - report[i-1]))
+	}
+
+	allIncreasing := true
+	allDecreasing := true
+	isOK := true
+
+	for _, gap := range gaps {
+		if gap == 0 || gap > 3 || gap < -3 {
+			isOK = false
+			continue
+		}
+		if gap > 0 {
+			allDecreasing = false
+		}
+		if gap < 0 {
+			allIncreasing = false
+		}
+	}
+	if isOK && (allIncreasing || allDecreasing) {
+		return true
+	}
+	return false
+}
+
+func analyzeReports(reports [][]int) int {
+	var safeReports int
+
 	for _, report := range reports {
-		var gaps []int
-		for i, level := range report {
-			if i == 0 {
-				//first level can be skipped
-				continue
-			}
-
-			gaps = append(gaps, (level - report[i-1]))
-		}
-
-		allIncreasing := true
-		allDecreasing := true
-
-		for _, gap := range gaps {
-			if gap == 0 || gap > 3 || gap < -3 {
-				continue Reports
-			}
-			if gap > 0 {
-				allDecreasing = false
-			}
-			if gap < 0 {
-				allIncreasing = false
-			}
-		}
-
-		if (allIncreasing && !allDecreasing) || (!allIncreasing && allDecreasing) {
-			result++
+		if reportIsSafe(report) {
+			safeReports++
 		}
 	}
 
-	return result, nil
+	return safeReports
+}
+
+func removeLevel(report []int, index int) []int {
+	return append(report[:index], report[index+1:]...)
+}
+
+func generateDampedReports(report []int) [][]int {
+	var dampedReports [][]int
+
+	for i, _ := range report {
+		dr := slices.Clone(report)
+		dampedReports = append(dampedReports, removeLevel(dr, i))
+	}
+
+	return dampedReports
+}
+
+func applyProblemDampener(reports [][]int, safeReportCount int) int {
+	var safeReports int
+
+	for _, report := range reports {
+		if reportIsSafe(report) {
+			safeReports++
+		} else {
+			// remove faulty element
+			dampedReports := generateDampedReports(report)
+			for _, dampedReport := range dampedReports {
+				if reportIsSafe(dampedReport) {
+					safeReports++
+					break
+				}
+			}
+		}
+	}
+
+	return safeReports
 }
 
 func (d Day2) Run() {
 	reports, err := handleInput()
-
-	star1, err := analyzeReports(reports)
 	if err != nil {
-		fmt.Println("error analyzing reactor reports", err)
-		os.Exit(1)
+		fmt.Println("error handling input", err)
 	}
 
-	var star2 int
+	star1 := analyzeReports(reports)
+
+	star2 := applyProblemDampener(reports, star1)
 
 	io.PrintResult(reflect.TypeOf((*Day2)(nil)).Elem().Name(), star1, star2)
 }

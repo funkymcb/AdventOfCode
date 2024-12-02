@@ -9,16 +9,17 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/funkymcb/AdventOfCode/internal/config"
 	"github.com/funkymcb/AdventOfCode/internal/day1"
+	"github.com/funkymcb/AdventOfCode/internal/day2"
 )
 
-const (
-	YEAR      = 2024
-	INPUT_DIR = "inputs"
-)
+type Runner interface {
+	Run()
+}
 
 func getInputFile(day int, filePath string) error {
-	url := fmt.Sprintf("http://adventofcode.com/%d/day/%d/input", YEAR, day)
+	url := fmt.Sprintf("http://adventofcode.com/%d/day/%d/input", config.YEAR, day)
 
 	sessionCookie := os.Getenv("AOC_SESSION")
 	if sessionCookie == "" {
@@ -55,7 +56,7 @@ func getInputFile(day int, filePath string) error {
 
 func checkInputFile(day int) error {
 	inputFileName := fmt.Sprintf("day_%d.txt", day)
-	inputFilePath := filepath.Join(INPUT_DIR, inputFileName)
+	inputFilePath := filepath.Join(config.INPUT_DIR, inputFileName)
 
 	// check if file already exists
 	if _, err := os.Stat(inputFilePath); errors.Is(err, os.ErrNotExist) {
@@ -88,5 +89,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	day1.Run()
+	dayRunners := map[int]Runner{
+		1: day1.Day1{},
+		2: day2.Day2{},
+		// 3: day3.Day3{},
+	}
+
+	if runner, exists := dayRunners[day]; exists {
+		runner.Run()
+	} else {
+		fmt.Printf("Day %d has not been implemented yet", day)
+	}
 }

@@ -89,9 +89,6 @@ func stripMemory(memory string) (string, error) {
 		for _, do := range doIndices {
 			if do[0] > dont[1] {
 				//remove everything inbetween dont[0] and do[1]
-				fmt.Println("dont", dont[0])
-				fmt.Println("do", do[0])
-				fmt.Println("stripping:", memory[dont[0]:do[1]])
 				strips = append(strips, memory[dont[0]:do[1]])
 				doBuffer = do[1]
 				break
@@ -107,7 +104,6 @@ func stripMemory(memory string) (string, error) {
 		memory = strings.Replace(memory, strip, "", -1)
 	}
 
-	// fmt.Println(strippedMemory)
 	return memory, nil
 }
 

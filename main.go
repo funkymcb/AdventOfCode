@@ -12,6 +12,7 @@ import (
 	"github.com/funkymcb/AdventOfCode/internal/config"
 	"github.com/funkymcb/AdventOfCode/internal/day1"
 	"github.com/funkymcb/AdventOfCode/internal/day2"
+	"github.com/funkymcb/AdventOfCode/internal/day3"
 )
 
 func getInputFile(day int, filePath string) error {
@@ -90,6 +91,8 @@ func main() {
 		day1.Run(day)
 	case 2:
 		day2.Run(day)
+	case 3:
+		day3.Run(day)
 	default:
 		fmt.Printf("day %d has not been implemented yet\n", day)
 	}

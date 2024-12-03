@@ -3,7 +3,6 @@ package day1
 import (
 	"fmt"
 	"os"
-	"reflect"
 	"sort"
 	"strconv"
 	"strings"
@@ -11,16 +10,10 @@ import (
 	"github.com/funkymcb/AdventOfCode/internal/io"
 )
 
-const DAY = 1
-
-type Day1 struct {
-	name int
-}
-
-func handleInput() ([]int, []int, error) {
+func handleInput(day int) ([]int, []int, error) {
 	var locationIDleft, locationIDright []int
 
-	lines, err := io.ReadFile(DAY)
+	lines, err := io.ReadFile(day)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -89,8 +82,8 @@ func calculateSimilarityScore(IDsLeft, IDsRight []int) (int, error) {
 	return result, nil
 }
 
-func (d Day1) Run() {
-	locationIDsleft, locationIDright, err := handleInput()
+func Run(day int) {
+	locationIDsleft, locationIDright, err := handleInput(day)
 	if err != nil {
 		fmt.Println("error interpreting input:", err)
 		os.Exit(1)
@@ -108,5 +101,5 @@ func (d Day1) Run() {
 		os.Exit(1)
 	}
 
-	io.PrintResult(reflect.TypeOf((*Day1)(nil)).Elem().Name(), star1, star2)
+	io.PrintResult(day, star1, star2)
 }

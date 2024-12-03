@@ -2,7 +2,6 @@ package day2
 
 import (
 	"fmt"
-	"reflect"
 	"slices"
 	"strconv"
 	"strings"
@@ -10,14 +9,10 @@ import (
 	"github.com/funkymcb/AdventOfCode/internal/io"
 )
 
-const DAY = 2
-
-type Day2 struct{}
-
-func handleInput() ([][]int, error) {
+func handleInput(day int) ([][]int, error) {
 	var reports [][]int
 
-	lines, err := io.ReadFile(DAY)
+	lines, err := io.ReadFile(day)
 	if err != nil {
 		return nil, err
 	}
@@ -122,8 +117,8 @@ func applyProblemDampener(reports [][]int, safeReportCount int) int {
 	return safeReports
 }
 
-func (d Day2) Run() {
-	reports, err := handleInput()
+func Run(day int) {
+	reports, err := handleInput(day)
 	if err != nil {
 		fmt.Println("error handling input", err)
 	}
@@ -132,5 +127,5 @@ func (d Day2) Run() {
 
 	star2 := applyProblemDampener(reports, star1)
 
-	io.PrintResult(reflect.TypeOf((*Day2)(nil)).Elem().Name(), star1, star2)
+	io.PrintResult(day, star1, star2)
 }

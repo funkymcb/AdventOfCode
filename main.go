@@ -14,10 +14,6 @@ import (
 	"github.com/funkymcb/AdventOfCode/internal/day2"
 )
 
-type Runner interface {
-	Run()
-}
-
 func getInputFile(day int, filePath string) error {
 	url := fmt.Sprintf("http://adventofcode.com/%d/day/%d/input", config.YEAR, day)
 
@@ -89,15 +85,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	dayRunners := map[int]Runner{
-		1: day1.Day1{},
-		2: day2.Day2{},
-		// 3: day3.Day3{},
-	}
-
-	if runner, exists := dayRunners[day]; exists {
-		runner.Run()
-	} else {
-		fmt.Printf("Day %d has not been implemented yet", day)
+	switch day {
+	case 1:
+		day1.Run(day)
+	case 2:
+		day2.Run(day)
+	default:
+		fmt.Printf("day %d has not been implemented yet\n", day)
 	}
 }

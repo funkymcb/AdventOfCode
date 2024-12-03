@@ -30,7 +30,3 @@ func ReadFile(day int) ([]string, error) {
 
 	return lines, nil
 }
-
-func PrintResult(day string, star1, star2 int) {
-	fmt.Printf("Result of %s star1: %d\nResult of %s star2: %d\n", day, star1, day, star2)
-}

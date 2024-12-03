@@ -63,6 +63,68 @@ func handleCorruptedMemory(memory string) (int, error) {
 	return result, nil
 }
 
+// strippedMemory will remove everything after "don't()" up until the next "do()"
+func stripMemory(memory string) (string, error) {
+	matchDont, err := regexp.Compile("don't\\(\\)")
+	if err != nil {
+		return "", err
+	}
+
+	dontIndices := matchDont.FindAllStringIndex(memory, -1)
+
+	matchDo, err := regexp.Compile("do\\(\\)")
+	if err != nil {
+		return "", err
+	}
+
+	doIndices := matchDo.FindAllStringIndex(memory, -1)
+
+	var doBuffer int
+	var strips []string
+	for _, dont := range dontIndices {
+		if dont[0] < doBuffer {
+			continue
+		}
+
+		for _, do := range doIndices {
+			if do[0] > dont[1] {
+				//remove everything inbetween dont[0] and do[1]
+				fmt.Println("dont", dont[0])
+				fmt.Println("do", do[0])
+				fmt.Println("stripping:", memory[dont[0]:do[1]])
+				strips = append(strips, memory[dont[0]:do[1]])
+				doBuffer = do[1]
+				break
+			} else {
+				continue
+			}
+		}
+	}
+
+	// remove strips from memory
+	// TODO not a good solution since there could theoretically be the equal strips
+	for _, strip := range strips {
+		memory = strings.Replace(memory, strip, "", -1)
+	}
+
+	// fmt.Println(strippedMemory)
+	return memory, nil
+}
+
+func handleExtendedMemory(memory string) (int, error) {
+	strippedMemory, err := stripMemory(memory)
+	if err != nil {
+		return 0, err
+	}
+
+	result, err := handleCorruptedMemory(strippedMemory)
+	if err != nil {
+		return 0, err
+	}
+
+	return result, nil
+}
+
 func Run(day int) {
 	memory, err := handleInput(day)
 	if err != nil {
@@ -74,5 +136,10 @@ func Run(day int) {
 		fmt.Println("error handling corrupted memory", err)
 	}
 
-	io.PrintResult(day, star1, 0)
+	star2, err := handleExtendedMemory(memory)
+	if err != nil {
+		fmt.Println("error by extended memory handling", err)
+	}
+
+	io.PrintResult(day, star1, star2)
 }
